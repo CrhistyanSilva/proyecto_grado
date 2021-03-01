@@ -1,0 +1,12 @@
+[submodule "idf/integer_discrete_flows"]
+	path = idf/integer_discrete_flows
+	url = git@github.com:CrhistyanSilva/integer_discrete_flows.git
+[submodule "lbb/localbitsback"]
+	path = lbb/localbitsback
+	url = git@github.com:CrhistyanSilva/localbitsback.git
+[submodule "rc/RC-PyTorch"]
+	path = rc/RC-PyTorch
+	url = git@github.com:CrhistyanSilva/RC-PyTorch.git
+[submodule "hilloc/hilloc"]
+	path = hilloc/hilloc
+	url = git@github.com:CrhistyanSilva/hilloc.git
