@@ -3,6 +3,7 @@ import numpy as np
 import pickle
 import lasagne
 import cv2
+import tqdm
 
 # Note that this will work with Python3
 def unpickle(file):
@@ -43,7 +44,7 @@ def load_databatch(data_folder, img_size=32):
 print(f'Processing file')
 samples = load_databatch('./')['X_train']
 
-for j in range(samples.shape[0]):
+for j in tqdm.tqdm(range(samples.shape[0])):
     img = samples[j, :, :, :]
 
     red = img[:,:,2].copy()
@@ -52,6 +53,6 @@ for j in range(samples.shape[0]):
     img[:,:,0] = red
     img[:,:,2] = blue
 
-    cv2.imwrite(f'image_{j}.png', img)
+    cv2.imwrite(f"image_{'{:06}'.format(j)}.png", img)
 print('finish')
 
