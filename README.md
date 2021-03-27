@@ -6,6 +6,14 @@ git submodule update --init --recursive
 
 NOTA: `--init` solo es necesario la primera vez para sincronizarlos.
 
+## Configurar mail para los batch
+
+Dentro de cada submodulo en la carpeta `batch` se encuentran los scripts para la ejecucion de los comandos en el cluster. En caso usar los batch y querer tener el mail configurado para todos los scripts se puede agregar la siguiente linea al archivo `~/.bashrc` cambiando por el mail correspondiente:
+
+alias sbatch='sbatch --mail-user=cr.silper@gmail.com'
+
+O modificar en cada uno de los archivos reemplazando `user@email` por el correspondiente.
+
 ---
 ## Instalación
 
