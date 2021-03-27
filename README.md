@@ -6,6 +6,14 @@ git submodule update --init --recursive
 
 NOTA: `--init` solo es necesario la primera vez para sincronizarlos.
 
+## Configurar mail para los batch
+
+Dentro de cada submodulo en la carpeta `batch` se encuentran los scripts para la ejecucion de los comandos en el cluster. En caso usar los batch y querer tener el mail configurado para todos los scripts se puede agregar la siguiente linea al archivo `~/.bashrc` cambiando por el mail correspondiente:
+
+alias sbatch='sbatch --mail-user=cr.silper@gmail.com'
+
+O modificar en cada uno de los archivos reemplazando `user@email` por el correspondiente.
+
 ---
 ## Instalación
 
@@ -29,7 +37,7 @@ Crear entorno virtual con la version de python necesaria y activarlo:
 
 Instalar pytorch y cudatoolkit (en caso de usar gpu):
 
-* conda install pytorch torchvision cudatoolkit=10.0 -c pytorch\
+* conda install pytorch torchvision cudatoolkit=10.0 -c pytorch
 
 Instalar el resto de dependencias:
 
@@ -42,6 +50,7 @@ Correr el siguiente comando para tener asignado un node en cluster:
 
 Instalar libbpg usando el script `bpg_install.sh` que se encuentra en la raíz (es necesario correrlo desde `home`):
 * mv bpg_install.sh ~/bpg_install.sh
+* mv SDL_x11sym.h ~/SDL_x11sym.h
 * cd ~/
 * sh bpg_install.sh
 
@@ -62,7 +71,7 @@ Instalar requerimientos, `requirements.txt` se encuentra en `rc/RC-PyTorch/src`:
 
 #### Instalación
 
-* conda create --name lbb 3.6.7
+* conda create --name lbb python=3.6.7
 * conda activate lbb
 
 * conda install pytorch torchvision cudatoolkit=10.0 -c pytorch
