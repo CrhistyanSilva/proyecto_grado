@@ -11,7 +11,8 @@
 #SBATCH --output=%x_%j.out
 
 source /etc/profile.d/modules.sh
-source ~/miniconda3/bin/activate
+source $CONDA_ACTIVATE
 conda activate rc
+
 cd ~/proyecto_grado/rc/RC-PyTorch/src
 bash get_models.sh "$MODELS_DIR"
