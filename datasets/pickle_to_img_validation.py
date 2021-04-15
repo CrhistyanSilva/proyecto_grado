@@ -4,6 +4,7 @@ import pickle
 import lasagne
 import cv2
 import tqdm
+import argparse
 
 # Note that this will work with Python3
 def unpickle(file):
@@ -12,8 +13,7 @@ def unpickle(file):
     return dict
 
 
-def load_databatch(data_folder, img_size=32):
-    data_file = os.path.join(data_folder, 'val_data')
+def load_databatch(data_file, img_size=64):
 
     d = unpickle(data_file)
     x = d['data']
@@ -41,9 +41,21 @@ def load_databatch(data_folder, img_size=32):
         Y_train=Y_train.astype('int32')
         )
 
-print(f'Processing file')
-samples = load_databatch('./')['X_train']
+ap = argparse.ArgumentParser(description='Extract images from pickle filename')
+ap.add_argument('pickle_filename', help='Pickle filename to extract the images')
+ap.add_argument('--size', default=32, help='Images size assuming square images')
+args = vars(ap.parse_args())
 
+pickle_fn = args['pickle_filename']
+img_size = args['size']
+
+assert os.path.isfile(pickle_fn), 'Pickle filename not found'
+
+print(f'Processing pickle file')
+output_dir = os.path.dirname(pickle_fn)
+samples = load_databatch(pickle_fn)['X_train']
+
+print(f'Writing images in {output_dir}')
 for j in tqdm.tqdm(range(samples.shape[0])):
     img = samples[j, :, :, :]
 
@@ -53,6 +65,7 @@ for j in tqdm.tqdm(range(samples.shape[0])):
     img[:,:,0] = red
     img[:,:,2] = blue
 
-    cv2.imwrite(f"image_{'{:06}'.format(j)}.png", img)
+    output_fn = os.path.join(output_dir, f"image_{'{:06}'.format(j)}.png")
+    cv2.imwrite(output_fn, img)
 print('finish')
 
