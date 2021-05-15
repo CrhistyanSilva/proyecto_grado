@@ -92,3 +92,27 @@ make -j4
 Para correr es necesario definir el PYTHON_PATH para que tome la libreria compilada y las carpetas del repositorio, por ejemplo parado en la carpeta `lbb/localbitsback`:
 
 * PYTHONPATH=./:compression/ans/build/ python scripts/run_compression.py
+
+---
+
+## Algoritmos clásicos
+
+### FLIF
+
+Clonar este [repositorio](https://github.com/FLIF-hub/FLIF) y seguir las instrcciones de instalación en la plataforma correspondiente
+
+Para correr una compresión sin perdida usar el siguiente comando:
+* flif {input} {out}
+
+### Webp
+
+Descargar el paquete de instalación necesario de [aquí](https://storage.googleapis.com/downloads.webmproject.org/releases/webp/index.html) o descargar los fuentes, descomprimir y agregar el directorio `bin` al `PATH` del sistema.
+
+Para correr una compresión sin perdida usar el siguiente comando:
+* cwebp --lossles {input} -o {out}
+
+### Batch sobre directorios
+
+Para correr la compresion y calcular el bpd sobre un directorio o varios directorios de imagenes usar este [script](classics/encode.py). Para correr:
+
+* python encode.py webp ~/Desktop/datasets_proyecto/mobile

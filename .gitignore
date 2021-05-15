@@ -1,3 +1,6 @@
 rc/datasets
 
 *.out
+
+# Pycharm
+.idea
