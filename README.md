@@ -75,7 +75,7 @@ Instalar requerimientos, `requirements.txt` se encuentra en `rc/RC-PyTorch/src`:
 * conda activate lbb
 
 * conda install pytorch torchvision cudatoolkit=10.0 -c pytorch
-* pip install tqdm
+* pip install -r requirements.txt
 
 * Build de la libreria C++ que esta en el repositorio (se necesita un compilador con soporte OpenMP):
 
