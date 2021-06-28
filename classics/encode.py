@@ -17,7 +17,12 @@ def get_images_filenames(dir, extensions):
 
 def compress(encode_cmd, img_fn):
     img_name = os.path.splitext(os.path.basename(img_fn))[0]
-    out_fn = os.path.join(output_dir, f'{img_name}.{algorithm}')
+    ext = {
+        'flif': 'flif',
+        'webp': 'webp',
+        'jpeg': 'jls'
+    }
+    out_fn = os.path.join(output_dir, f'{img_name}.{ext[algorithm]}')
 
     if os.path.exists(out_fn):
         os.remove(out_fn)
@@ -57,6 +62,8 @@ if algorithm == 'webp':
     encode_cmd = "cwebp -lossless '{input}' -o '{out}'"
 elif algorithm == 'flif':
     encode_cmd = "flif '{input}' '{out}'"
+elif algorithm == 'jpeg':
+    encode_cmd = "convert -compress LosslessJPEG '{input}' '{out}'"
 else:
     assert False, 'Compression format not available'
 

@@ -16,3 +16,4 @@ cd ~/proyecto_grado/classics
 
 python encode.py webp /clusteruy/home03/compresion_imgRN/professional_valid_cropped/ --delete --num_cores 18
 python encode.py flif /clusteruy/home03/compresion_imgRN/professional_valid_cropped/ --delete --num_cores 18
+python encode.py jpeg /clusteruy/home03/compresion_imgRN/professional_valid_cropped/ --delete --num_cores 18

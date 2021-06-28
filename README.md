@@ -111,6 +111,13 @@ Descargar el paquete de instalación necesario de [aquí](https://storage.google
 Para correr una compresión sin perdida usar el siguiente comando:
 * cwebp --lossles {input} -o {out}
 
+### JPEG LS
+
+Para comprimir usando jpeg ls es necesario instalar libreria `imagemagick` usando el comando `convert` para comprimir de la siguiente manera:
+* convert -compress LosslessJPEG {input} {out}
+
+NOTA: la extensión en este caso debe ser `.jls`
+
 ### Batch sobre directorios
 
 Para correr la compresion y calcular el bpd sobre un directorio o varios directorios de imagenes usar este [script](classics/encode.py). Para correr:
