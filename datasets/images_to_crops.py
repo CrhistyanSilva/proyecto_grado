@@ -2,6 +2,7 @@ import os
 import glob
 import argparse
 import cv2
+import tqdm
 
 
 def main():
@@ -24,9 +25,10 @@ def main():
     extensions += [x.upper() for x in extensions]
     for extension in extensions:
         input_imgs += glob.glob(os.path.join(input_dir, f'*.{extension}'))
+    sorted(input_imgs)
 
     # Write crops for each image
-    for img_fn in input_imgs:
+    for img_fn in tqdm.tqdm(input_imgs, desc='cropping'):
         img = cv2.imread(img_fn)
 
         basename = os.path.basename(img_fn)
@@ -34,10 +36,11 @@ def main():
 
         for i in range(0, img.shape[0], size):
             for j in range(0, img.shape[1], size):
-                crop = img[i:i + size, j:j + size, :]
-                new_name = name + f'-{i + j:03}' + ext
-                out_fn = os.path.join(output_dir, new_name)
-                cv2.imwrite(out_fn, crop)
+                if i + size < img.shape[0] and j + size < img.shape[1]:
+                    crop = img[i:i + size, j:j + size, :]
+                    new_name = name + f'-{i + j:03}' + ext
+                    out_fn = os.path.join(output_dir, new_name)
+                    cv2.imwrite(out_fn, crop)
 
 
 if __name__ == '__main__':
