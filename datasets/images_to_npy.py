@@ -12,9 +12,10 @@ def convert_path_to_npy(*, path='train_64x64', outfile='train_64x64_mitad.npy'):
     assert isinstance(path, str), "Expected a string input for the path"
     assert os.path.exists(path), "Input path doesn't exist"
     files = [f for f in listdir(path) if isfile(join(path, f))]
+    files = sorted(files)
     print('Number of valid images is:', len(files))
     imgs = []
-    for i in tqdm(range(len(files))):
+    for i in tqdm(range(len(files)//2)):
         img = imageio.imread(join(path, files[i]))
         img = img.astype('uint8')
         assert np.max(img) <= 255
@@ -41,5 +42,5 @@ if __name__ == '__main__':
 
     out_file = args['output']
     input_dir = args['input']
-    os.makedirs(out_file, exist_ok=True)
+    os.makedirs(os.path.dirname(out_file), exist_ok=True)
     convert_path_to_npy(path=input_dir, outfile=out_file)
